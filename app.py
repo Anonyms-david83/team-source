@@ -17,3 +17,7 @@ def product_detail(shop_id , shop_name):
 @app.route('/article')
 def article():
     return render_template('article.html')
+
+@app.route('/article/<int:article_id>/<string:article_slug>')
+def article_detail(article_id , article_slug):
+    return render_template('detail.html' , a=article_id , b=article_slug)
