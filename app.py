@@ -45,11 +45,16 @@ def contactus():
         print(f'the request containing the get attributes is {request}')
         return render_template('contact_us.html')
     elif request.method == 'POST': #if the user submited a form
-        print(f'the request containing the post attributes is {request}')
-        print(request.form['input_fname'])
-        print(request.form['input_lname'])
-        print(request.form['input_number'])
-        print(request.form['input_request'])
+        fname = request.form['input_fname']
+        lname = request.form['input_lname']
+        phone = request.form['input_number']
+        body = request.form['input_request']
+
+        new_ticket = Ticket(name = fname, lastname = lname, phone = phone, body = body)
+        db.session.add(new_ticket)
+        db.session.commit()
+
+
         return render_template('contact_us.html')
 
 
