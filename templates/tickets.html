@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Tickets {% endblock %}
+
+{% block content %}
+
+
+    {% for ticket in tickets %}
+
+
+        <h1>{{ticket.name}}</h1>
+        <h2>{{ticket.lastname}}</h2>
+        <h3>{{ticket.phone}}</h3>
+        <h4 style="color: red">{{ticket.body}}</h4><hr>
+
+
+    {% endfor %}
+
+
+{% endblock content %}

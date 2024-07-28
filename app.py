@@ -58,6 +58,13 @@ def contactus():
         return render_template('contact_us.html')
 
 
+@app.route('/tickets')
+def show_all_tickets():
+
+    tickets = Ticket.query.all()
+
+    return render_template('tickets.html' , tickets=tickets)
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html')
