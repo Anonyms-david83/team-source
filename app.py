@@ -38,8 +38,11 @@ def contactus():
         return render_template('contact_us.html')
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 
