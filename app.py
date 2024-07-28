@@ -37,7 +37,9 @@ def product_detail(shop_id , shop_name):
 
 @app.route('/articles')
 def articles():
-    return render_template('article.html')
+    articles = Article.query.all()
+
+    return render_template('article.html', articles=articles)
 
 @app.route('/create_article' , methods=['GET', 'POST'])
 def create_article():
