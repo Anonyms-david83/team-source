@@ -6,6 +6,14 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqlite.db"
 db = SQLAlchemy(app)
 
+
+class Ticket(db.Model):
+    id = db.Column(db.Integer , primary_key = True)
+    name = db.Column(db.String(10))
+    lastname = db.Column(db.String(10))
+    phone = db.Column(db.String(12))
+    body = db.Column(db.String(200))
+
 with app.app_context():
     db.create_all()
 
