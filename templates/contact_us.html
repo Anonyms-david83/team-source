@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact us  {% endblock title %}
+
+
+{% block content %}
+
+    <h2>contact us form</h2>
+
+    <form action="" method="post">
+
+        <label>First Name</label>
+        <input name="input_fname" type="text" placeholder="Your first name" required><br>
+        <label>Last Name</label>
+        <input name="input_lname" type="text" placeholder="Your last name" required><br>
+        <label>Phone number</label>
+        <input name="input_number" type="number" placeholder="Your number" required><br>
+        <label>Form</label>
+        <input name="input_request" type="text" placeholder="Your Idea" required><hr><br>
+        <button type="submit">Submit</button>
+
+
+    </form>
+
+
+
+{% endblock content %}

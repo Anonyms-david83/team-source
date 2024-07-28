@@ -21,3 +21,25 @@ def article():
 @app.route('/article/<int:article_id>/<string:article_slug>')
 def article_detail(article_id , article_slug):
     return render_template('detail.html' , a=article_id , b=article_slug)
+
+
+@app.route('/contactus' , methods=['GET', 'POST'])
+def contactus():
+
+    if request.method == 'GET' : #IF THE USER VISITED THE PAGE
+        print(f'the request containing the get attributes is {request}')
+        return render_template('contact_us.html')
+    elif request.method == 'POST': #if the user submited a form
+        print(f'the request containing the post attributes is {request}')
+        print(request.form['input_fname'])
+        print(request.form['input_lname'])
+        print(request.form['input_number'])
+        print(request.form['input_request'])
+        return render_template('contact_us.html')
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=False)
+
