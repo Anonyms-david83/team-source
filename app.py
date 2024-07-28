@@ -14,6 +14,12 @@ class Ticket(db.Model):
     phone = db.Column(db.String(12))
     body = db.Column(db.String(200))
 
+
+class Article(db.Model):
+    id = db.Column(db.Integer , primary_key = True)
+    name_author = db.Column(db.String(10))
+    body = db.Column(db.String(200))
+
 with app.app_context():
     db.create_all()
 
@@ -29,9 +35,23 @@ def product_detail(shop_id , shop_name):
     return render_template('detail.html' , product_id = shop_id , product_name = shop_name)
 
 
-@app.route('/article')
-def article():
+@app.route('/articles')
+def articles():
     return render_template('article.html')
+
+@app.route('/create_article' , methods=['GET', 'POST'])
+def create_article():
+    if request.method == 'GET':
+        return render_template('create.html')
+    elif request.method == 'POST':
+        author_name = request.form['input_name']
+        body = request.form['input_body']
+
+        new_article = Article(name_author = author_name, body = body)
+        db.session.add(new_article)
+        db.session.commit()
+
+        return render_template('create.html')
 
 @app.route('/article/<int:article_id>/<string:article_slug>')
 def article_detail(article_id , article_slug):
