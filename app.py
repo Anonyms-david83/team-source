@@ -53,9 +53,11 @@ def create_article():
 
         return render_template('create.html')
 
-@app.route('/article/<int:article_id>/<string:article_slug>')
-def article_detail(article_id , article_slug):
-    return render_template('detail.html' , a=article_id , b=article_slug)
+@app.route('/article/<int:article_id>')
+def article_detail(article_id):
+    #requested_article = Article.query.get(article_id)
+    requested_article = db.get_or_404(Article ,article_id)
+    return render_template('detail.html' , article = requested_article)
 
 
 @app.route('/contactus' , methods=['GET', 'POST'])
