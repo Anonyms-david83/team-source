@@ -1,11 +1,13 @@
 from flask import Flask , render_template , request
 from flask_sqlalchemy import SQLAlchemy
 
+################################################[Configurations]######################################################
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqlite.db"
 db = SQLAlchemy(app)
 
+###################################################[DataBase]##########################################################
 
 class Ticket(db.Model):
     id = db.Column(db.Integer , primary_key = True)
@@ -23,6 +25,7 @@ class Article(db.Model):
 with app.app_context():
     db.create_all()
 
+##################################################[Views]##############################################################
 
 @app.route('/')
 def index():
@@ -89,10 +92,13 @@ def show_all_tickets():
 
     return render_template('tickets.html' , tickets=tickets)
 
+################################################[Error Handlers]######################################################
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html')
 
+##################################################[Runtime]############################################################
 
 if __name__ == '__main__':
     app.run(debug=True)
