@@ -13,7 +13,7 @@
 
             <h4 class="text-center my-3 pb-3">To Do App</h4>
 
-            <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+            <form action="" method="POST" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
               <div class="col-12">
                 <div data-mdb-input-init class="form-outline">
                   <input type="text" id="form1" class="form-control" name="input_body"/>
@@ -33,23 +33,36 @@
             <table class="table mb-4">
               <thead>
                 <tr>
-                  <th scope="col">No.</th>
+                  <th scope="col">ID</th>
                   <th scope="col">Todo item</th>
+                  <th scope="col">Date</th>
                   <th scope="col">Status</th>
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
+
+
                 {% for todo in todos %}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Buy groceries for next week</td>
-                        <td>In progress</td>
+                        <th scope="row">{{ todo.id }}</th>
+                        <td>{{ todo.body }}</td>
+                        <td>{{ todo.date }}</td>
+
+
+                        {% if todo.status == True %}
+                            <td>In progress</td>
+                        {% else %}
+                            <td>Finished</td>
+                        {% endif %}
+
+
                         <td>
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">Delete</button>
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success ms-1">Finished</button>
+                            <a href="{{ url_for('delete' , todo_id = todo.id) }}" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">Delete</a>
+                            <a href="{{ url_for('update' , todo_id = todo.id) }}" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success ms-1">Finished</a>
                         </td>
                     </tr>
+
                 {% endfor %}
 
               </tbody>
