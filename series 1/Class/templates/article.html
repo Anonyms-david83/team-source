@@ -9,7 +9,7 @@
 
 
         <h1>{{article.name_author}}</h1>
-        <h2>{{article.body}}</h2>
+        <a href="{{ url_for('article_detail' , article_id = article.id )}}"><h2>{{article.body}}</h2><hr></a>
 
 
 
