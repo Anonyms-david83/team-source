@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}  Projects Page  {% endblock title %}
+
+{% block content %}
+
+    {% for project in projects %}
+
+    <a href="{{url_for('project_detail' , project_id = project.id )}}"><div id="card-container" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{project.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{project.date}}</h6>
+            <p class="card-text">{{project.description}}</p>
+            <p class="card-text">Value : {{project.value}}</p>
+        </div>
+    </div>
+    </a>
+
+    {% endfor %}
+
+{% endblock content %}

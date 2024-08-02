@@ -1,0 +1,22 @@
+{% extends'base.html' %}
+
+{% block title %}  Contact Us Page  {% endblock title %}
+
+{% block content %}
+
+
+    <form action="/contact_us" method="POST">
+
+        <input name="input_name" type="text" placeholder="Your name"><br>
+        <textarea name="input_description" placeholder="Your request"></textarea><br>
+        <input name="input_phone" type="number" placeholder="Your Phone number"><br>
+        <input type="submit" value="Submit">
+
+
+
+    </form>
+
+
+{% endblock content %}
+
+

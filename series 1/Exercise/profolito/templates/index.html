@@ -4,12 +4,12 @@
 
 {% block content %}
 
-    <h1>Erfan Safarali</h1>
+    <h1>Erfan Safarali</h1> <a href="{{url_for('add_skill')}}">Add skill</a> <a href="{{url_for('add_proejct')}}">Add Prjetect</a>
     <h2>Full stacks Developer</h2><hr>
 
-    <!--  Porject Loop  -->
+    <!--  Project Loop  -->
 
-    <h1>Projects</h1>
+    <a href="{{ url_for('projects') }}"><h1>Projects</h1></a>
 
     {% for project in projects %}
 
@@ -28,7 +28,7 @@
     <hr>
 
     <!-- Skills  -->
-        <h1>My Skills</h1>
+    <a href="{{ url_for('skills') }}"><h1>My Skills</h1></a>
 
     {% for skill in skills %}
 
@@ -44,6 +44,21 @@
 
     <hr>
 
-    <!-- -->
+    <!-- Contact us -->
+
+    <h1>Contact us</h1>
+
+    <div class="contact-container">
+        <form action="/contact_us" method="POST">
+
+            <input name="input_name" type="text" placeholder="Your name">
+            <textarea name="input_description" placeholder="Your request"></textarea>
+            <input name="input_phone" type="number" placeholder="Your Phone number">
+            <input type="submit" value="Submit">
+
+
+
+        </form>
+    </div>
 
 {% endblock content %}

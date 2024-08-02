@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}  Skills Page  {% endblock title %}
+
+{% block content %}
+
+
+    {% for skill in skills %}
+
+    <a href="{{ url_for('skill_detail' , skill_id = skill.id) }}"><div id="card-container" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{skill.name}}</h5>
+            <p class="card-text">{{skill.description}}</p>
+            <p class="card-text">Level : {{skill.level}}</p>
+        </div>
+    </div></a>
+
+    {% endfor %}
+
+
+
+
+{% endblock content %}

@@ -1,4 +1,4 @@
-from flask import Flask , render_template , request , abort
+from flask import Flask , render_template , request , redirect , url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -38,6 +38,15 @@ class Skill(db.Model):
     #description = Column(String(100), unique=True, nullable=False)
     #value = Column(Integer(100), unique=True, nullable=False)
 
+
+class Ticket(db.Model):
+    id = db.Column(db.Integer, primary_key=True , unique=True)
+    name = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    date = db.Column(db.Date(), nullable=False, default=datetime.now)
+
+
 with app.app_context():
     db.create_all()
 
@@ -73,7 +82,7 @@ def add_proejct():
         db.session.commit()
 
 
-        return render_template(template_name)
+        return redirect(url_for('index'))
 
 @app.route('/project/<int:project_id>')
 def project_detail(project_id):
@@ -101,13 +110,45 @@ def add_skill():
         db.session.add(new_skill)
         db.session.commit()
 
-        return render_template(template_name)
+        #return render_template(template_name)
+        return redirect(url_for('index'))
 
 @app.route('/skill/<int:skill_id>')
 def skill_detail(skill_id):
     template_name = 'skill_detail.html'
     skill = db.get_or_404(Skill , skill_id)
     return render_template(template_name, skill=skill)
+
+
+@app.route('/projects')
+def projects():
+    template_name = 'projects.html'
+    projects = Porject.query.all()
+    return render_template(template_name , projects = projects)
+
+@app.route('/skills')
+def skills():
+    template_name = 'skills.html'
+    skills = Skill.query.all()
+    return render_template(template_name , skills = skills)
+
+
+@app.route('/contact_us' , methods=['GET', 'POST'])
+def contact_us():
+    template_name = 'contact_us.html'
+    if request.method == 'GET':
+        return render_template(template_name)
+    if request.method == 'POST':
+        input_name = request.form.get('input_name')
+        input_description = request.form.get('input_description')
+        input_phone = request.form.get('input_phone')
+
+        new_ticket = Ticket(name=input_name, description=input_description, phone=input_phone)
+        db.session.add(new_ticket)
+        db.session.commit()
+        return redirect(url_for('contact_us'))
+
+
 
 ##################################################[Error Handling]###################################################
 
