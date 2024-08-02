@@ -79,6 +79,9 @@ def project_detail(project_id):
 
 ##################################################[Error Handling]###################################################
 
+@app.errorhandler(404)
+def page_not_found(error): #error argument must be given
+    return  render_template('404.html')
 
 ##################################################[Runtime]###################################################
 
