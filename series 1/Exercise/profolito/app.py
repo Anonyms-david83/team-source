@@ -67,6 +67,18 @@ def add_proejct():
 
         return render_template(template_name)
 
+@app.route('/project/<int:project_id>')
+def project_detail(project_id):
+
+    template_name = 'project_detail.html'
+
+    project = db.get_or_404(Porject , project_id)
+
+    return render_template(template_name, project=project)
+
+
+##################################################[Error Handling]###################################################
+
 
 ##################################################[Runtime]###################################################
 

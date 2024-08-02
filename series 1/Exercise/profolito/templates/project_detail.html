@@ -1,0 +1,14 @@
+{% extends'base.html' %}
+
+{% block title %}  Project Detail Page  {% endblock title %}
+
+{% block content %}
+
+        <div class="project_detail_container">
+            <h5>{{project.name}}</h5>
+            <h6>{{project.date}}</h6>
+            <p>{{project.description}}</p>
+            <p>{{project.value}}</p>
+        </div>
+
+{% endblock content %}
