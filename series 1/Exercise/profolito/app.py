@@ -1,5 +1,6 @@
 from flask import Flask , render_template , request , abort
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 ###########################################[App instance]###############################################
 
@@ -20,6 +21,7 @@ class Porject(db.Model):
     name = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(100),  nullable=False)
     value = db.Column(db.Integer(),  nullable=False)
+    date = db.Column(db.Date(), nullable=False , default=datetime.now)
 
     def __repr__(self):
         return self.name
@@ -40,8 +42,9 @@ with app.app_context():
 def index():
 
     template_name = 'index.html'
+    projects = Porject.query.all()
 
-    return  render_template(template_name)
+    return  render_template(template_name , projects=projects)
 
 
 

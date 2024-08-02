@@ -13,3 +13,8 @@ h2{
 
 
 }
+
+#card-container{
+    text-align: center;
+    display: inline-block;
+}
