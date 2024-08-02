@@ -13,22 +13,37 @@
 
     {% for project in projects %}
 
-    <div id="card-container" class="card" style="width: 18rem;">
+    <a href="{{url_for('project_detail' , project_id = project.id )}}"><div id="card-container" class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">{{project.name}}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{project.date}}</h6>
             <p class="card-text">{{project.description}}</p>
-            <p class="card-text">{{project.value}}</p>
+            <p class="card-text">Value : {{project.value}}</p>
         </div>
     </div>
+    </a>
 
     {% endfor %}
 
     <hr>
 
     <!-- Skills  -->
+        <h1>My Skills</h1>
 
+    {% for skill in skills %}
 
+    <a href="{{ url_for('skill_detail' , skill_id = skill.id) }}"><div id="card-container" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{skill.name}}</h5>
+            <p class="card-text">{{skill.description}}</p>
+            <p class="card-text">Level : {{skill.level}}</p>
+        </div>
+    </div></a>
 
+    {% endfor %}
+
+    <hr>
+
+    <!-- -->
 
 {% endblock content %}

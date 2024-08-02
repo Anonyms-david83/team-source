@@ -26,6 +26,13 @@ class Porject(db.Model):
     def __repr__(self):
         return self.name
 
+
+class Skill(db.Model):
+    id = db.Column(db.Integer, primary_key=True , unique=True)
+    name = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    level = db.Column(db.Integer, nullable=False)
+
     #id = Column(Integer, primary_key=True , unique=True)
     #name = Column(String(20), unique=True, nullable=False)
     #description = Column(String(100), unique=True, nullable=False)
@@ -43,8 +50,9 @@ def index():
 
     template_name = 'index.html'
     projects = Porject.query.all()
+    skills = Skill.query.all()
 
-    return  render_template(template_name , projects=projects)
+    return  render_template(template_name , projects=projects , skills=skills)
 
 
 
@@ -76,6 +84,30 @@ def project_detail(project_id):
 
     return render_template(template_name, project=project)
 
+
+@app.route('/add_skill' , methods=['GET', 'POST'])
+def add_skill():
+
+    template_name = 'add_skill.html'
+
+    if request.method == 'GET':
+        return render_template(template_name)
+    elif request.method == 'POST':
+        input_name = request.form['input_name']
+        input_description = request.form['input_description']
+        input_level = request.form['input_level']
+
+        new_skill = Skill(name=input_name, description=input_description, level=input_level)
+        db.session.add(new_skill)
+        db.session.commit()
+
+        return render_template(template_name)
+
+@app.route('/skill/<int:skill_id>')
+def skill_detail(skill_id):
+    template_name = 'skill_detail.html'
+    skill = db.get_or_404(Skill , skill_id)
+    return render_template(template_name, skill=skill)
 
 ##################################################[Error Handling]###################################################
 
