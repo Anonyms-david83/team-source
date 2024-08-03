@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+{% block title %} Contact us Page {% endblock title %}
+
+{% block content %}
+
+    <form style="text-align: center" action="" method="POST">
+        <input name="input_fname" type="text" placeholder="Your first name" required>
+        <input name="input_lname" type="text" placeholder="Your Last name" required>
+        <textarea placeholder="Your request" name="input_body" required></textarea>
+        <input type="number" name="input_phone" placeholder="Your phone number : +9890000000"required>
+        <input type="email" name="input_email" placeholder="Your email" required>
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Project List {% endblock title %}
+
+{% block content %}
+
+
+
+    <h1>Skills List</h1>
+
+    {% for skill in skills %}
+
+        <a href="{{ url_for('skill_detail' , skill_id = skill.id) }}"><div id="skill-card-container" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{skill.name}}</h5>
+                <p class="card-text">{{skill.description}}</p>
+                <p  class="card-link">Level : {{skill.level}}</p>
+
+            </div>
+        </div></a>
+
+    {% endfor %}
+
+
+
+{% endblock  %}
+

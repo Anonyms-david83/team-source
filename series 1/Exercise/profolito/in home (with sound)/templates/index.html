@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} Index page {% endblock title %}
+
+{% block content %}
+
+    <h1>Erfan Safarali</h1> <a href="{{ url_for('skills') }}">My Skills</a> <a href="{{ url_for('projects') }}">My Projects</a>
+    <h2>Full stacks Developer</h2><hr>
+
+    <!-- Porject Section -->
+    <a href="{{url_for('projects')}}"><h1>Projects</h1></a>
+
+    {% for project in projects %}
+
+        <a href="{{ url_for('project_detail' , project_id = project.id)}}"><div id="project-card-container" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{project.name}}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{project.date}}</h6>
+                <p class="card-text">{{project.description}}</p>
+                <p  class="card-link">Value : {{project.value}}</p>
+
+            </div>
+        </div></a>
+    {% endfor %}
+    <hr>
+
+    <!-- Skills section -->
+    <a href="{{ url_for('skills') }}"><h1>Skills</h1></a>
+
+        {% for skill in skills %}
+
+       <a href="{{ url_for('skill_detail' , skill_id = skill.id) }}"><div id="skill-card-container" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{skill.name}}</h5>
+                <p class="card-text">{{skill.description}}</p>
+                <p  class="card-link">Level : {{skill.level}}</p>
+
+            </div>
+       </div></a>
+    {% endfor %}
+    <hr>
+
+
+    <!-- Contact us section -->
+    <a href="{{ url_for('contactus') }}"><h1>Ticket</h1></a>
+    <div class="contact-form-container">
+        <form action="/contactus" method="POST">
+            <input name="input_fname" type="text" placeholder="Your first name" required>
+            <input name="input_lname" type="text" placeholder="Your Last name" required>
+            <textarea placeholder="Your request" name="input_body" required></textarea>
+            <input type="number" name="input_phone" placeholder="Your phone number : +9890000000"required>
+            <input type="email" name="input_email" placeholder="Your email" required>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock content %}

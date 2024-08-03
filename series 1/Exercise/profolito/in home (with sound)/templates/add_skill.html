@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Skill page {% endblock title %}
+
+{% block content %}
+
+
+  <div class="form_skill">
+    <form action="" method="POST">
+
+      <input type="text" name="input_name" placeholder="Skill Name" required><br>
+      <textarea name="input_description" placeholder="Skill Description" required></textarea><br>
+      <input type="number" name="input_level" placeholder="Level of the Skill 1-10" required><br>
+      <input type="submit" value="Submit">
+
+
+    </form>
+  </div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+.container-404 {
+    text-align: center;
+}
+
+h1{
+    color: red;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+.form_project{
+    text-align: center;
+}
+
+#project-card-container{
+    display: inline-block;
+    text-align: center;
+}
+
+.project_detail_container{
+    text-align: center;
+}
+
+.form_skill{
+    text-align: center;
+}
+
+#skill-card-container{
+    display: inline-block;
+    text-align: center;
+}
+
+.skill_detail_container{
+    text-align: center;
+}
+
+.contact-form-container{
+    text-align: center;
+}
