@@ -1,0 +1,30 @@
+{% include 'base.html' %}
+
+{% block title %} Contact us {% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'contact.css') }}">
+{% endblock head %}
+
+{% block content %}
+
+    <h1>Contact us</h1>
+    <div class="ticket-container">
+
+        <form action="" method="POST">
+            <input type="text" name="input_name" required>
+            <textarea name="input_description" required></textarea>
+            <input type="number" name="input_phone" required>
+            <input type='email' name="input_email" required>
+            <input type="submit" value="Submit">
+
+        </form>
+
+
+
+    </div>
+
+
+
+
+{% endblock content %}

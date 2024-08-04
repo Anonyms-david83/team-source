@@ -26,7 +26,13 @@ class Advertisement(db.Model):
     date = db.Column(db.Date, nullable=False , default=datetime.now)
 
 
-
+class Ticket(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    date = db.Column(db.Date, nullable=False , default=datetime.now)
 
 with app.app_context():
     db.create_all()
@@ -67,8 +73,24 @@ def contact():
     if request.method == 'GET':
         return render_template(template_name)
     if request.method == 'POST':
-        pass
+        name = request.form['input_name']
+        description = request.form['input_description']
+        phone = request.form['input_phone']
+        email = request.form['input_email']
 
+        new_ticket = Ticket(name=name, description=description, phone=phone, email=email)
+        db.session.add(new_ticket)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+
+@app.route('/ad_delete/<int:ad_id>' , methods=['GET', 'POST'])
+def ad_delete(ad_id):
+    ad = Advertisement.query.get(ad_id)
+    db.session.delete(ad)
+    db.session.commit()
+
+    return redirect(url_for('index'))
 #################################################[Error Handler]####################################################
 
 
