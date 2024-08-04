@@ -1,0 +1,30 @@
+{% include 'base.html' %}
+
+{% block title %} Add advertisement {% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'add_advertisement.css') }}">
+{% endblock head %}
+
+{% block content %}
+
+    <div class="add-advertisement-form-container">
+
+        <form action="" method="POST">
+
+            <input name="input_title" type="text" placeholder="Your add title" required><br>
+            <textarea name="input_description" placeholder="Your add description" required></textarea><br>
+            <input name="input_price" type="number" placeholder="Your add Price" required><br>
+            <input name="input_status" type="text" placeholder="Your add status : NEW / WORKED" required><br>
+            <input name="input_phone" type="number" placeholder="Your phone number" required><br>
+            <input name="input_city" type="text" placeholder="Your add city" required><br>
+            <input type="submit" value="Submit">
+
+
+        </form>
+
+
+    </div>
+
+
+{% endblock content %}

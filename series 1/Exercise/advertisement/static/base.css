@@ -1,0 +1,9 @@
+h1{
+    text-align: center;
+    color: darkorange;
+}
+
+#card-container{
+    display: inline-block;
+    text-align: center;
+}

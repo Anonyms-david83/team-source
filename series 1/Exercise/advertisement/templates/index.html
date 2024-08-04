@@ -4,6 +4,26 @@
 
 {% block body %}
 
-    <h1>Hello world</h1>
+    <h1>Addvertisement</h1>
+
+    <!-- Adds -->
+
+    {% for add in adds %}
+        <div id="card-container" class="card" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{ add.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ add.date }}</h6>
+            <p class="card-text">{{ add.description }}</p>
+            <h6 class="card-subtitle mb-2 text-body-secondary"> Price :  {{ add.price }}</h6>
+            <h5 class="card-subtitle mb-2 text-body-secondary"> Status :  {{ add.status }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary"> City :  {{ add.city }}</h6>
+            <h5 class="card-subtitle mb-2 text-body-secondary"> Phone :  {{ add.contact_phone }}</h5>
+
+            </div>
+        </div>
+
+
+
+    {% endfor %}<hr>
 
 {% endblock body %}
