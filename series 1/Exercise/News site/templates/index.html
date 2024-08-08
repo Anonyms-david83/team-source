@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Index page {% endblock title %}
+
+{% block content %}
+
+
+{% for news in news_list %}
+<a href="{{ url_for('news_detail' , news_id = news.id) }}"><div id="project-card-container" class="card" style="width: 18rem; display: inline-block ; text-align: center ; " >
+            <div class="card-body">
+                <h5 class="card-title">{{news.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{news.date}}</h6>
+                <p class="card-text">{{news.description}}</p>
+                <p  class="card-link">author : {{news.author_name}}</p>
+
+            </div>
+        </div></a>
+    {% endfor %}
+
+
+
+
+
+{% endblock content %}

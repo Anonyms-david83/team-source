@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact page {% endblock title %}
+
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static' , filename='contact.css') }}">
+{% endblock header %}
+
+{% block content %}
+
+
+{% if form.errors %}
+
+    {% for field , errors in form.errors.items() %}
+        {% for error in errors %}
+            <div class="alert alert-primary" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+{% endif %}
+
+
+<div class="contact-form-container">
+
+
+    <form action="" method="POST" novalidate >
+
+
+        {{ form.csrf_token }}
+        {{ form.author_name.label }}
+        {{ form.author_name }}<br>
+        {{ form.author_lname.label }}
+        {{ form.author_lname }}<br>
+        {{ form.author_email.label }}
+        {{ form.author_email }}<br>
+        {{ form.author_phone.label }}
+        {{ form.author_phone }}<br>
+        {{ form.ticket_subject.label }}
+        {{ form.ticket_subject }}<br>
+        {{ form.ticket_description.label }}
+        {{ form.ticket_description }}<br>
+
+        <input type="submit" value="Submit">
+
+
+    </form>
+
+
+
+</div>
+
+{% endblock content %}

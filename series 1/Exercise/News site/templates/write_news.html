@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Wrtie News {% endblock title %}
+
+{% block content %}
+
+    {% if form.errors %}
+        {% for field , errors in form.errors.items() %}
+            {% for error in errors %}
+                <div class="alert alert-primary" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <form action="" method="POST" novalidate>
+
+        {{ form.csrf_token }}
+        {{ form.news_title.label }}
+        {{ form.news_title }}<br>
+
+        {{ form.news_description.label }}
+        {{ form.news_description }}<br>
+
+        {{ form.author_name.label }}
+        {{ form.author_name }}<br>
+
+        <input type="submit" value="Submit">
+
+
+
+
+    </form>
+
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} News Detail {% endblock title %}
+
+{% block content %}
+
+
+    <h1>{{news.title}}</h1>
+    <h2>{{news.date}}</h2>
+    <small>{{news.author_name}}</small>
+    <p>{{news.description}}</p>
+
+    <a class="btn btn-danger" href="{{ url_for('delete_news' , news_id = news.id) }}">Delete</a>
+
+
+{% endblock content %}
