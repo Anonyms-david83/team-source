@@ -11,6 +11,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.secret_key = 'wdiegjnejioionesriognseiofgneiosnfgioesngioesngiongionginerniegnierngsegiongiosenmgioseng'
 
+UPLOAD_FOLDER = 'static/img'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 ############################################[database]##############################################################
 
@@ -43,6 +45,10 @@ def index():
 
 #############################################[error handler]######################################################
 
+@app.errorhandler(404)
+def page_not_found(e):
+    template_name = '404.html'
+    return render_template(template_name)
 
 ############################################[runtime]############################################################
 
