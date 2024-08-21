@@ -92,6 +92,7 @@ def register_car():
 
         else :
             return render_template(template_name , form = form_class)
+
     return redirect(url_for('index'))
 
 @app.route('/car_detail/<int:car_id>')
