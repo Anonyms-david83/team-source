@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} داروی مدنظر {% endblock title %}
+
+
+{% block header %}
+
+{% endblock header %}
+
+{% block content %}
+
+<div style="text-align: center">
+    <img src="{{ url_for('static', filename=medicin.img_path) }}" alt="{{ medicin.name }}">
+    <h2>{{ medicin.name }}</h2><hr>
+    <p>{{ medicin.description }}</p><hr>
+    <small> quantity : {{medicin.quantity}}</small><hr>
+    <small>Price : {{medicin.price}}</small><hr>
+</div>
+{% endblock content %}

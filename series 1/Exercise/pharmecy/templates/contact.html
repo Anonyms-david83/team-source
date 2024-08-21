@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} ارتباط با ما {% endblock title %}
+
+{% block content %}
+
+<div class="contact-form" style="text-align: center">
+    <h1 style="text-align: center">مشخصات خودرا را وارد کنید</h1>
+    <form action="" method="POST"  enctype="multipart/form-data" novalidate>
+
+        {{ form.csrf_token }}
+        {% for field in form %}
+            {% if field.name == 'csrf_token' %}
+                <input type="hidden" name="csrf_token" value="{{ field.csrf_token }}">
+            {% else %}
+                {{ field.label }}   {{ field }} <br>
+            {% endif %}
+
+        {% endfor %}
+
+
+    <input type="submit" value="Submit">
+    </form>
+
+</div>
+
+{% endblock content %}

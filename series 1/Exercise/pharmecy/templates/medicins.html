@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} دارو ها {% endblock title %}
+
+
+{% block header %}
+
+{% endblock header %}
+
+{% block content %}
+
+<h1 style="text-align: center">لیست دارو های موجود</h1>
+
+{% for medicin in medicins %}
+{% if medicin.quantity != 0 %}
+<div class="card" style="width: 18rem; display: inline-block">
+  <img src="{{ medicin.img_path }}" class="card-img-top" alt="img">
+  <div class="card-body">
+    <h5 class="card-title">{{medicin.name}}</h5>
+    <p class="card-text">{{medicin.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Price : {{ medicin.price }}</li>
+    <li class="list-group-item">Quantity : {{ medicin.quantity }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{{ url_for('medicin_detail' , medicin_id = medicin.id) }}" class="card-link">Detail</a>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+
+
+
+{% endblock content %}

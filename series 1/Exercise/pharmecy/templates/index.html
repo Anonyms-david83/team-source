@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %} به داروخانه ما خوش آمدید {% endblock title %}
+
 {% block header %}
 
 
@@ -8,9 +10,68 @@
 
 {% block content %}
 
-<h1>Hello world</h1>
+<!-- Crousel  -->
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ url_for('static' , filename='img/mainhead.jpeg') }}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>به داروخانه ما خوش آمدید</h5>
+        <p>داروخانه ای مملوع از دارو های مفید</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <a href="{{ url_for('contact') }}"><img src="{{ url_for('static' , filename='img/contact.jpg') }}" class="d-block w-100" alt="..."></a>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>ارتباط با ما</h5>
+        <p>ارتباط با کارشناسان ما</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <a href="{{ url_for('medicins') }}" ><img src="{{ url_for('static' , filename='img/list.jpg') }}" class="d-block w-100" alt="..."></a>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>لیست دارو ها</h5>
+        <p>لیست تمامی دارو های ما در یک قاب</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 
+</div><br> <hr>
 
+<!-- medicin list -->
 
+<h1 style="text-align: center">برخی از دارو های ما</h1>
+
+{% for medicin in medicins %}
+
+<div class="card" style="width: 18rem; display: inline-block">
+  <img src="{{ medicin.img_path }}" class="card-img-top" alt="img">
+  <div class="card-body">
+    <h5 class="card-title">{{medicin.name}}</h5>
+    <p class="card-text">{{medicin.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Price : {{ medicin.price }}</li>
+    <li class="list-group-item">Quantity : {{ medicin.quantity }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{{ url_for('medicin_detail' , medicin_id = medicin.id) }}" class="card-link">Detail</a>
+  </div>
+</div>
+
+{% endfor %}
 
 {% endblock content %}
