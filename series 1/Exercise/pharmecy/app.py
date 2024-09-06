@@ -128,6 +128,7 @@ def medicin_detail(medicin_id):
     #Medicine.query.get(medicin_id)
     medicin = db.get_or_404(Medicine , medicin_id)
     template_name = 'medicin_detail.html'
+    print(medicin.img_path)
 
     return render_template(template_name , medicin = medicin)
 
