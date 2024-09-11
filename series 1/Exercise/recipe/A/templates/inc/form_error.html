@@ -1,0 +1,11 @@
+{% if form %}
+    {% if form.errors %}
+        {% for field , errors in form.errors.items() %}
+            {% for error in errors %}
+                <div class="alert alert-primary" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+{% endif %}

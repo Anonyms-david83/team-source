@@ -88,14 +88,29 @@ def register():
 
             img.save(img_url)
 
-            flash('رسیپ شما با موفقیت ثبت شد ')
+            flash('رسیپ شما با موفقیت ثبت شد ' , 'success')
 
             return redirect(url_for('index'))
 
         else :
 
-            flash('مشکلی در ثبت رسیپ وجود داشت لطفا دوباره سعی کنید')
+            flash('مشکلی در ثبت رسیپ وجود داشت لطفا دوباره سعی کنید' , 'danger')
             return render_template(template_name , form = form_class)
+
+
+@app.route('/delete/<int:recipe_id>')
+def delete(recipe_id):
+    target_recipe = db.get_or_404(Recipe , recipe_id)
+    # target_recipe = Recipe.get_or_404(recipe_id)
+
+    try:
+        db.session.delete(target_recipe)
+        db.session.commit()
+        flash('با موفقیت غذای بد مزه شما حذف شد' , 'success')
+        return redirect(url_for('index'))
+    except:
+        flash('اینقدر غذات نحذ بود پاک نشد دوباره امتحان کن' , 'success')
+        return redirect(url_for('index'))
 
 
 ########################################################################################################################
