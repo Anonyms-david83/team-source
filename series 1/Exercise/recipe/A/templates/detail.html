@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} جزعیات رسیپ {% endblock title %}
+
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+    <div style="text-align: center">
+                        <img src="/{{recipe.img_url}}" class="img-fluid rounded-start" alt="img"><hr><hr>
+                        <h5 class="card-title">{{recipe.name}}</h5><hr>
+                        <p class="card-text"><small class="text-body-secondary">{{recipe.country}}</small></p><hr>
+                        <p class="card-text"><small class="text-body-secondary">قیمت : {{recipe.cost}}</small></p><hr>
+                        <p class="card-text">{{recipe.ingredients}}</p><hr>
+                        <p class="card-text">{{recipe.instructions}}</p><hr>
+                        <p class="card-text"><small class="text-body-secondary">{{recipe.date}}</small></p><hr>
+                        <a href="{{url_for('delete' , recipe_id = recipe.id)}}" class="btn btn-danger">حذف</a><hr>
+
+    </div>
+
+{% endblock content %}

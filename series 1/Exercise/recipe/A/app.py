@@ -97,6 +97,11 @@ def register():
             flash('مشکلی در ثبت رسیپ وجود داشت لطفا دوباره سعی کنید' , 'danger')
             return render_template(template_name , form = form_class)
 
+@app.route('/detail/<int:recipe_id>')
+def detail(recipe_id):
+    target_recipe = db.get_or_404(Recipe , recipe_id)
+    template_name = 'detail.html'
+    return render_template(template_name , recipe = target_recipe)
 
 @app.route('/delete/<int:recipe_id>')
 def delete(recipe_id):
