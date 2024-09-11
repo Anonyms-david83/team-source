@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired , Length
 from flask_wtf.file import FileAllowed
 from werkzeug.utils import secure_filename
 import  os
+from datetime import datetime
 
 ########################################################################################################################
 
@@ -31,6 +32,7 @@ class Recipe(db.Model):
     instructions = db.Column(db.String(5000), nullable=False)
     cost = db.Column(db.Integer, nullable=False)
     img_url = db.Column(db.String(50), nullable=False , unique=True)
+    add_date = db.Column(db.Date, nullable=False, default=datetime.now)
 
 
 
@@ -54,8 +56,9 @@ class RecipeRegisterationForm(FlaskForm):
 @app.route('/' , methods=['GET', 'POST'])
 def index():
     template_name = 'index.html'
+    recipes = Recipe.query.all()
 
-    return render_template(template_name)
+    return render_template(template_name , recipes = recipes)
 
 
 @app.route('/register' , methods=['GET', 'POST'])
